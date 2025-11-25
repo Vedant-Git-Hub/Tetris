@@ -1,13 +1,29 @@
+CC = gcc
+CFLAGS = -Wall -Wextra
 
+SRC = main.c buff_op.c port.c
+OBJ = $(patsubst %.c, build/%.o, $(SRC))
 
+TARGET = tetris
 
+all: $(TARGET)
 
-all:
-	@gcc -c main.c
-	@gcc main.o -o tetris
+# Final linking step
+$(TARGET): $(OBJ)
+	@$(CC) $(OBJ) -o $(TARGET)
+
+# Rule to build object files inside build/
+build/%.o: %.c | build
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Create build directory if missing
+build:
+	@mkdir -p build
+
+run: $(TARGET)
 	@clear
-	@./tetris
-
+	@./$(TARGET)
 
 clean:
-	rm -rf main.o tetris
+	rm -rf build $(TARGET)
+
