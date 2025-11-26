@@ -4,6 +4,7 @@
 
 #include "buff_op.h"
 #include "port.h"
+#include "game_intro.h"
 
 
 
@@ -12,7 +13,7 @@
 #define OUTLINE_X               		0
 #define OUTLINE_Y               		0
 #define OUTLINE_WIDTH           		40
-#define OUTLINE_HEIGHT          		48
+#define OUTLINE_HEIGHT          		45
 
 #define ARENA_X     				(OUTLINE_X + 1)
 #define ARENA_Y					(OUTLINE_Y + 1)
@@ -33,6 +34,11 @@ int main()
     signalInit();
     termDisableEcho();
     termClearScrn();
+    termSetCursorHome();
+    
+    introAnimation();
+    
+    while(1);
     
     if( !drawBuffInit(OUTLINE_WIDTH, OUTLINE_HEIGHT) )
     	return 0;

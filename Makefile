@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra
 
-SRC = main.c buff_op.c port.c
+SRC = main.c buff_op.c port.c game_intro.c
 OBJ = $(patsubst %.c, build/%.o, $(SRC))
 
 TARGET = tetris
